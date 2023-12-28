@@ -25,6 +25,8 @@ public class Cmd {
     public static final int PLAYER_CHAT = 22;
     public static final int REQUEST_CHANGE_MAP = 23;
     public static final int SET_POS = 24;
+    public static final int ZONES_INFO = 25;
+    public static final int REQUEST_CHANGE_ZONE = 26;
 
 }
 

@@ -7,7 +7,6 @@ import com.girlkun.ninnin.core.PlayerDAO;
 import com.girlkun.ninnin.entities.player.Player;
 import com.girlkun.ninnin.server.Cmd;
 import com.girlkun.ninnin.server.io.MySession;
-import com.girlkun.ninnin.utils.Utils;
 import java.io.IOException;
 
 /**
@@ -85,7 +84,6 @@ public class PlayerService {
     }
 
     public final void sendPlayersInMapToPlayer(Player player) {
-        System.out.println("send map to me " + player.getZone().getPlayers().size());
         for (Player pl : player.getZone().getPlayers()) {
             Message msg = new Message(Cmd.PLAYER_JOIN_MAP);
             try {
@@ -124,6 +122,10 @@ public class PlayerService {
         } catch (Exception e) {
         }
     }
+    
+    public final void synchronizedPosPlayer(Player player){
+        this.setPos(player, player.getLocation().getX(), player.getLocation().getY());
+    } 
 }
 
 /**

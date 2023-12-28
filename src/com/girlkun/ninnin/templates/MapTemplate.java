@@ -1,5 +1,7 @@
 package com.girlkun.ninnin.templates;
 
+import com.girlkun.ninnin.entities.map.Waypoint;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
@@ -17,6 +19,8 @@ public class MapTemplate {
     private int id;
     private String name;
     private int zones;
+    
+    private List<Waypoint> waypoints;
     
 }
 

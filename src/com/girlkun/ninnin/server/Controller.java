@@ -60,6 +60,12 @@ public class Controller implements IMessageHandler {
             case Cmd.REQUEST_CHANGE_MAP:
                 MapService.gI().requestChangeMap(player, msg.readByte());
                 break;
+            case Cmd.ZONES_INFO:
+                MapService.gI().sendZonesInfo(player);
+                break;
+            case Cmd.REQUEST_CHANGE_ZONE:
+                MapService.gI().requestChangeZone(player, msg.readByte());
+                break;
         }
     }
     

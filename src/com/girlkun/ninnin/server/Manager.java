@@ -4,6 +4,7 @@ import com.girlkun.GirlkunDBTool;
 import com.girlkun.database.GirlkunDB;
 import com.girlkun.ninnin.consts.ConstDB;
 import com.girlkun.ninnin.entities.map.Map;
+import com.girlkun.ninnin.entities.map.Waypoint;
 import com.girlkun.ninnin.templates.MapTemplate;
 import com.girlkun.ninnin.templates.ObjectMapTemplate;
 import com.girlkun.result.GirlkunResultSet;
@@ -31,6 +32,7 @@ public class Manager {
 
     public static int PORT = 7555;
 
+    public static final float PPM = 100f;
     public static final List<ObjectMapTemplate> OBJECT_MAP_TEMPLATES = new ArrayList<>();
     public static final List<MapTemplate> MAP_TEMPLATES = new ArrayList<>();
     public static final List<Map> MAPS = new ArrayList<>();
@@ -95,9 +97,25 @@ public class Manager {
         GirlkunResultSet rs = GirlkunDB.executeQuery(ConstDB.NINNIN_RES.baseName, "select * from map_template");
         while (rs.next()) {
             int id = rs.getInt("id");
-            String name = rs.getString("name");
+            String mapName = rs.getString("name");
             int zones = rs.getInt("zones");
-            MAP_TEMPLATES.add(new MapTemplate(id, name, zones));
+            List<Waypoint> waypoints = new ArrayList<>();
+            JSONArray dataArr = (JSONArray) JSONValue.parse(rs.getString("waypoints"));
+            for(int i = 0; i < dataArr.size(); i++){
+                JSONObject dataWaypoint = (JSONObject) JSONValue.parse(dataArr.get(i).toString());
+                String name = String.valueOf(dataWaypoint.get("name"));
+                int x = Integer.parseInt(String.valueOf(dataWaypoint.get("x")));
+                int y = Integer.parseInt(String.valueOf(dataWaypoint.get("y")));
+                int w = Integer.parseInt(String.valueOf(dataWaypoint.get("w")));
+                int h = Integer.parseInt(String.valueOf(dataWaypoint.get("h")));
+                int mapIdGo = Integer.parseInt(String.valueOf(dataWaypoint.get("mapIdGo")));
+                int xGo = Integer.parseInt(String.valueOf(dataWaypoint.get("xGo")));
+                int yGo = Integer.parseInt(String.valueOf(dataWaypoint.get("yGo")));
+                boolean isEnter = Boolean.parseBoolean(String.valueOf(dataWaypoint.get("isEnter")));
+                Waypoint waypoint = new Waypoint(i, name, x, y, w, h, isEnter, mapIdGo, xGo, yGo);
+                waypoints.add(waypoint);
+            }
+            MAP_TEMPLATES.add(new MapTemplate(id, mapName, zones, waypoints));
         }
         rs.dispose();
     }
