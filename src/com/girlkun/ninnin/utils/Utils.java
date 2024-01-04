@@ -24,6 +24,10 @@ public class Utils {
         return (float) Math.sqrt(deltaX * deltaX + deltaY * deltaY);
     }
 
+    public static boolean canDoLastTime(long lastTime, int timeDo) {
+        return System.currentTimeMillis() - lastTime >= timeDo;
+    }
+
 }
 
 /**

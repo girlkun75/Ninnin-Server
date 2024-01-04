@@ -5,7 +5,6 @@ import com.girlkun.network.io.Message;
 import com.girlkun.network.session.ISession;
 import com.girlkun.ninnin.Resources;
 import com.girlkun.ninnin.consts.ConstEventPopup;
-import com.girlkun.ninnin.entities.map.Zone;
 import com.girlkun.ninnin.entities.player.Player;
 import com.girlkun.ninnin.server.Cmd;
 
@@ -48,6 +47,16 @@ public class CoreService {
 
     public final void sendDoneLoadGame(ISession is) {
         is.sendMessage(new Message(Cmd.DONE_LOAD_GAME));
+    }
+
+    public final void sendNotifyUnder(Player player, String text) {
+        Message msg = new Message(Cmd.NOTIFY_UNDER);
+        try {
+            msg.writeUTF(text);
+            player.sendMessage(msg);
+            msg.cleanup();
+        } catch (Exception e) {
+        }
     }
 
     public final void sendNotifyPopup(ISession is, String text, ConstEventPopup event) {

@@ -1,5 +1,6 @@
 package com.girlkun.ninnin.server;
 
+import com.esotericsoftware.kryonet.Server;
 import com.girlkun.network.server.GirlkunServer;
 import com.girlkun.network.server.IGirlkunServer;
 import com.girlkun.ninnin.server.io.MySession;
@@ -34,6 +35,11 @@ public class ServerNinnin {
         server.setAcceptHandler(new SessionAcceptHandler());
         server.setTypeSessioClone(MySession.class);
         server.start(Manager.PORT);
+    }
+    
+    private void openServer2() throws Exception{
+        Server server = new Server();
+        
     }
 
 }

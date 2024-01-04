@@ -27,6 +27,7 @@ public class Cmd {
     public static final int SET_POS = 24;
     public static final int ZONES_INFO = 25;
     public static final int REQUEST_CHANGE_ZONE = 26;
+    public static final int NOTIFY_UNDER = 27;
 
 }
 
