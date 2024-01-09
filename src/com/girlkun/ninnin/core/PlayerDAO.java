@@ -36,7 +36,7 @@ public class PlayerDAO {
     public static final boolean createPlayer(ISession is, String name) {
         try {
             GirlkunResultSet rs = null;
-            rs = GirlkunDB.executeQuery(ConstDB.NINNIN_RES.baseName, "select * from player where account_id = ? limit 1", ((MySession) is).id);
+            rs = GirlkunDB.executeQuery(ConstDB.NINNIN_RES.baseName, "select * from player where account_id = ? limit 1", ((MySession) is).getAccountId());
             if (rs.first()) {
                 CoreService.gI().sendNotifyPopup(is, "Tài khoản đã tạo nhân vật!", ConstEventPopup.SWITCH_TO_MENU_SCREEN);
                 return false;
@@ -49,7 +49,7 @@ public class PlayerDAO {
             }
             rs.dispose();
             GirlkunDB.executeUpdate(ConstDB.NINNIN_RES.baseName, "insert into player (account_id, name, data_location) values ()",
-                    ((MySession) is).id, name, "[1,1,1]");
+                    ((MySession) is).getAccountId(), name, "[1,1,1]");
             return true;
         } catch (Exception ex) {
             return false;

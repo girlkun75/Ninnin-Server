@@ -28,6 +28,7 @@ public class Cmd {
     public static final int ZONES_INFO = 25;
     public static final int REQUEST_CHANGE_ZONE = 26;
     public static final int NOTIFY_UNDER = 27;
+    public static final int PLAYER_ATTACK = 28;
 
 }
 

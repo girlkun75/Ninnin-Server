@@ -24,7 +24,7 @@ public class SessionAcceptHandler implements ISessionAcceptHandler {
 
     @Override
     public void sessionDisconnect(ISession is) {
-        Player player = ((MySession) is).player;
+        Player player = ((MySession) is).getPlayer();
         if(player != null){
             player.dispose();
         }

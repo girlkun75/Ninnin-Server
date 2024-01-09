@@ -23,8 +23,8 @@ public class ClientManager {
         if (!NAMES_PLAYER.containsKey(player.getName())) {
             NAMES_PLAYER.put(player.getName(), player);
         }
-        if (!ACCOUNT_IDS_PLAYER.containsKey(((MySession) player.getSession()).id)) {
-            ACCOUNT_IDS_PLAYER.put(((MySession) player.getSession()).id, player);
+        if (!ACCOUNT_IDS_PLAYER.containsKey(((MySession) player.getSession()).getAccountId())) {
+            ACCOUNT_IDS_PLAYER.put(((MySession) player.getSession()).getAccountId(), player);
         }
     }
 
@@ -35,8 +35,8 @@ public class ClientManager {
         if (NAMES_PLAYER.containsKey(player.getName())) {
             NAMES_PLAYER.remove(player.getName(), player);
         }
-        if (ACCOUNT_IDS_PLAYER.containsKey(((MySession) player.getSession()).id)) {
-            ACCOUNT_IDS_PLAYER.remove(((MySession) player.getSession()).id, player);
+        if (ACCOUNT_IDS_PLAYER.containsKey(((MySession) player.getSession()).getAccountId())) {
+            ACCOUNT_IDS_PLAYER.remove(((MySession) player.getSession()).getAccountId(), player);
         }
     }
 

@@ -19,8 +19,6 @@ public class Player implements IUpdate {
     
     private ISession session;
     private int id;
-    private String username;
-    private String password;
     private String name;
     private Location location;
     private Zone zone;

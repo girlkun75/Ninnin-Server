@@ -9,6 +9,7 @@ import com.girlkun.ninnin.services.AuthenticationService;
 import com.girlkun.ninnin.services.DataService;
 import com.girlkun.ninnin.services.MapService;
 import com.girlkun.ninnin.services.PlayerService;
+import com.girlkun.ninnin.services.SkillService;
 
 /**
  *
@@ -29,7 +30,7 @@ public class Controller implements IMessageHandler {
     @Override
     public void onMessage(ISession is, Message msg) {
         try {
-            Player player = ((MySession) is).player;
+            Player player = ((MySession) is).getPlayer();
             if (player != null) {
                 this.handleMessageRequirePlayer(player, msg);
             } else {
@@ -65,6 +66,9 @@ public class Controller implements IMessageHandler {
                 break;
             case Cmd.REQUEST_CHANGE_ZONE:
                 MapService.gI().requestChangeZone(player, msg.readByte());
+                break;
+            case Cmd.PLAYER_ATTACK:
+                SkillService.gI().playerUseSkill(player);
                 break;
         }
     }

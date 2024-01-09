@@ -29,7 +29,7 @@ public class PlayerService {
         String name = msg.readUTF();
         MySession session = (MySession) is;
         if (PlayerDAO.createPlayer(is, name)) {
-            AuthenticationService.gI().login(is, session.username, session.password);
+            AuthenticationService.gI().login(is, session.getUsername(), session.getPassword());
         }
     }
 

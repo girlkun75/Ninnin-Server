@@ -50,9 +50,9 @@ public class Authentication {
                 pl.getSession().disconnect();
                 return null;
             }
-            mySession.id = accountId;
-            mySession.username = username;
-            mySession.password = password;
+            mySession.setAccountId(accountId);
+            mySession.setUsername(username);
+            mySession.setPassword(password);
             rs.dispose();
             rs = GirlkunDB.executeQuery(ConstDB.NINNIN_RES.baseName, "select * from player where account_id = ? limit 1", accountId);
             if (rs.first()) {
@@ -70,7 +70,7 @@ public class Authentication {
                 player.setName(name);
                 player.getLocation().set(x, y);
                 player.setSession(is);
-                ((MySession) is).player = player;
+                ((MySession) is).setPlayer(player);
                 player.setZone(ManagerService.gI().findZoneByMapIdAndZoneId(mapId, 0));
             } else {
                 CoreService.gI().switchToCreatePlayerScreen(is);
